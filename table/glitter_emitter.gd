@@ -8,11 +8,15 @@ const CIRCLE_SIZE = 15
 @onready var covering_texture: CoveringTexture = $"../CoveringTexture"
 
 
+func _ready() -> void:
+	emitting = false
+
+
 func _process(delta: float) -> void:
 	if emitting:
 		var drawable: DrawableTexture2D = covering_texture.texture
 		drawable.blit_rect(Rect2i(Vector2i(global_position / 8.0 - Vector2.ONE * (CIRCLE_SIZE / 2.0)),
-				Vector2i.ONE * CIRCLE_SIZE), BLUR_CIRCLE, Color(1.0, 1.0, 1.0, 2.0 * delta))
+				Vector2i.ONE * CIRCLE_SIZE), BLUR_CIRCLE, Color(1.0, 1.0, 1.0, 3.0 * delta))
 
 
 func _input(event: InputEvent) -> void:

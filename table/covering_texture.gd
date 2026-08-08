@@ -4,7 +4,7 @@ extends Sprite2D
 
 var luminance: float = 1.0
 
-@onready var progress_bar: ProgressBar = $ProgressBar
+@onready var progress_bar: ProgressBar = $"../UI/ProgressBar"
 
 
 func _ready() -> void:
@@ -17,9 +17,7 @@ func setup_new_layer():
 	
 	var drawable := DrawableTexture2D.new()
 	drawable.setup(size.x, size.y, DrawableTexture2D.DRAWABLE_FORMAT_RGBAF)
-	#_texture_mutex.lock()
 	texture = drawable
-	#_texture_mutex.unlock()
 
 
 func _on_check_cover_timeout() -> void:
@@ -33,6 +31,5 @@ func _on_check_cover_timeout() -> void:
 		lum += color.get_luminance()
 	
 	lum /= image.get_size().x * image.get_size().y
-	print(lum)
 	luminance = lum
 	progress_bar.value = luminance
