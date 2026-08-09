@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://b32qhlexd4few"]
 
 [ext_resource type="Script" uid="uid://6bhxit7wlaj" path="res://upgrades/upgrade_screen.gd" id="1_m60ru"]
-[ext_resource type="Script" uid="uid://ckdkqngu64vet" path="res://upgrades/upgrade.gd" id="2_h5hvi"]
+[ext_resource type="Script" uid="uid://ckdkqngu64vet" path="res://upgrades/upgrade_old.gd" id="2_h5hvi"]
+[ext_resource type="PackedScene" uid="uid://dn0bcmb02ivvn" path="res://upgrades/upgrade.tscn" id="3_m818p"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m60ru"]
 
@@ -46,7 +47,6 @@ position_offset = Vector2(308, 146)
 script = ExtResource("2_h5hvi")
 text = "Sparkle
 Further"
-max_levels = null
 metadata/_custom_type_script = "uid://ckdkqngu64vet"
 
 [node name="MoreGlitter" type="GraphElement" parent="UpgradeGraph" unique_id=560004357]
@@ -59,8 +59,10 @@ position_offset = Vector2(414, 255)
 script = ExtResource("2_h5hvi")
 text = "More
 Glitter!!!"
-max_levels = null
 metadata/_custom_type_script = "uid://ckdkqngu64vet"
+
+[node name="Upgrade" parent="UpgradeGraph" unique_id=751509468 instance=ExtResource("3_m818p")]
+layout_mode = 0
 
 [connection signal="pressed" from="UpgradeGraph/SparkleFurther" to="." method="_on_sparkle_further_pressed"]
 [connection signal="pressed" from="UpgradeGraph/MoreGlitter" to="." method="_on_more_glitter_pressed"]

@@ -5,56 +5,35 @@ extends GraphElement
 
 signal pressed()
 
-
-@export_multiline() var text: String = "Upgrade":
+@export_multiline var text: String:
 	set(value):
 		text = value
+		if not is_node_ready():
+			await ready
 		button.text = value
 @export var cost: int = 1:
 	set(value):
 		cost = value
+		if not is_node_ready():
+			await ready
 		cost_label.text = "Cost: %d" % value
-@export var max_levels: int = 1:
+@export_range(1, 10) var max_level: int:
 	set(value):
-		max_levels = value
-		levels_label.text = "%d/%d" % [level, value]
+		max_level = value
+		if not is_node_ready():
+			await ready
+		level_label.visible = true if value > 1 else false
+		level_label.text = "%d/%d" % [level, value]
 
-var level: int = 1:
+var level: int = 0:
 	set(value):
 		level = value
-		levels_label.text = "%d/%d" % [value, max_levels]
+		level_label.text = "%d/%d" % [value, max_level]
 
-var vertical_list: VBoxContainer
-var button: Button
-var level_cost_box: HBoxContainer
-var cost_label: Label
-var levels_label: Label
+@onready var button: Button = $VBoxContainer/Button
+@onready var cost_label: Label = $VBoxContainer/HBoxContainer/Cost
+@onready var level_label: Label = $VBoxContainer/HBoxContainer/LevelLabel
 
 
-func _init() -> void:
-	vertical_list = VBoxContainer.new()
-	add_child(vertical_list, false, Node.INTERNAL_MODE_FRONT)
-	
-	button = Button.new()
-	vertical_list.add_child(button)
-	button.text = text
-	button.pressed.connect(pressed.emit)
-	button.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	
-	level_cost_box = HBoxContainer.new()
-	vertical_list.add_child(level_cost_box)
-	level_cost_box.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	
-	cost_label = Label.new()
-	level_cost_box.add_child(cost_label)
-	cost_label.text = "Cost: %d" % cost
-	if max_levels > 1: # Only show levels if it has more than one
-		cost_label.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
-		
-		var separator := VSeparator.new()
-		level_cost_box.add_child(separator)
-		
-		levels_label = Label.new()
-		level_cost_box.add_child(levels_label)
-		levels_label.text = "%d/%d" % [level, max_levels]
-		levels_label.size_flags_horizontal = Control.SIZE_SHRINK_END
+func _on_button_pressed() -> void:
+	pressed.emit()

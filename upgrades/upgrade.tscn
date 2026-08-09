@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://dn0bcmb02ivvn"]
+
+[ext_resource type="Script" uid="uid://c3vojas4un7q8" path="res://upgrades/upgrade.gd" id="1_3oguy"]
+
+[node name="Upgrade" type="GraphElement" unique_id=751509468]
+offset_right = 40.0
+offset_bottom = 40.0
+draggable = false
+selectable = false
+script = ExtResource("1_3oguy")
+text = "Hello"
+max_level = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2006896787]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=1173656649]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Hello"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=600140965]
+layout_mode = 2
+
+[node name="Cost" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1877730587]
+layout_mode = 2
+text = "Cost: 1"
+
+[node name="LevelLabel" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1707087121]
+visible = false
+layout_mode = 2
+text = "0/1"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
