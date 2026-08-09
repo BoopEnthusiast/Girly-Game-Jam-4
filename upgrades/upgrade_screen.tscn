@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://b32qhlexd4few"]
+
+[ext_resource type="Script" uid="uid://6bhxit7wlaj" path="res://upgrades/upgrade_screen.gd" id="1_m60ru"]
+[ext_resource type="Script" uid="uid://ckdkqngu64vet" path="res://upgrades/upgrade.gd" id="2_h5hvi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m60ru"]
+
+[node name="UpgradeScreen" type="Control" unique_id=1290665312]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m60ru")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1614909984]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.6413845, 0.8936981, 0.61960787)
+
+[node name="UpgradeGraph" type="GraphEdit" parent="." unique_id=736914932]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_m60ru")
+show_grid = false
+snapping_enabled = false
+minimap_enabled = false
+show_menu = false
+
+[node name="SparkleFurther" type="GraphElement" parent="UpgradeGraph" unique_id=443172466]
+layout_mode = 0
+offset_left = 308.0
+offset_top = 146.0
+offset_right = 375.0
+offset_bottom = 227.0
+position_offset = Vector2(308, 146)
+script = ExtResource("2_h5hvi")
+text = "Sparkle
+Further"
+max_levels = null
+metadata/_custom_type_script = "uid://ckdkqngu64vet"
+
+[node name="MoreGlitter" type="GraphElement" parent="UpgradeGraph" unique_id=560004357]
+layout_mode = 0
+offset_left = 414.0
+offset_top = 255.0
+offset_right = 489.0
+offset_bottom = 336.0
+position_offset = Vector2(414, 255)
+script = ExtResource("2_h5hvi")
+text = "More
+Glitter!!!"
+max_levels = null
+metadata/_custom_type_script = "uid://ckdkqngu64vet"
+
+[connection signal="pressed" from="UpgradeGraph/SparkleFurther" to="." method="_on_sparkle_further_pressed"]
+[connection signal="pressed" from="UpgradeGraph/MoreGlitter" to="." method="_on_more_glitter_pressed"]
