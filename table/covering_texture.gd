@@ -5,24 +5,27 @@ extends Sprite2D
 signal finished_covering()
 
 const RESOLUTION_FACTOR = 8.0
-const LUMINANCE_CUTOFF = 0.9
+const LUMINANCE_CUTOFF = 0.99
 
 var luminance: float = 1.0
 
 @onready var progress_bar: ProgressBar = $"../UI/ProgressBar"
+@onready var screen: Camera2D = $"../Screen"
 
 
 func _ready() -> void:
 	setup_new_layer()
+	scale = Vector2.ONE * RESOLUTION_FACTOR
 	progress_bar.min_value = LUMINANCE_CUTOFF
 
 
 func setup_new_layer():
-	var viewport_size: Vector2 = get_viewport_rect().size
-	var size := Vector2i(viewport_size / RESOLUTION_FACTOR)
+	var viewport_size: Vector2 = get_viewport_rect().size * (1.0 / screen.zoom.x)
+	var texture_size := Vector2i(viewport_size / RESOLUTION_FACTOR)
+	position = (get_viewport_rect().size - viewport_size) / 2.0
 	
 	var drawable := DrawableTexture2D.new()
-	drawable.setup(size.x, size.y, DrawableTexture2D.DRAWABLE_FORMAT_RGBAF)
+	drawable.setup(texture_size.x, texture_size.y, DrawableTexture2D.DRAWABLE_FORMAT_RGBAF)
 	texture = drawable
 
 

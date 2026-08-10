@@ -3,9 +3,9 @@ class_name Upgrade
 extends GraphElement
 
 
-signal pressed()
+signal pressed(node: Upgrade)
 
-@export_multiline var text: String:
+@export_multiline var text: String = "Upgrade":
 	set(value):
 		text = value
 		if not is_node_ready():
@@ -22,8 +22,20 @@ signal pressed()
 		max_level = value
 		if not is_node_ready():
 			await ready
-		level_label.visible = true if value > 1 else false
+		if value > 1:
+			level_label.visible = true
+			cost_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		else:
+			level_label.visible = false
+			cost_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 		level_label.text = "%d/%d" % [level, value]
+@export var enabled: bool = true:
+	set(value):
+		enabled = value
+		if not is_node_ready():
+			await ready
+		button.disabled = not value
+@export var next_upgrades: Array[Upgrade]
 
 var level: int = 0:
 	set(value):
@@ -34,6 +46,29 @@ var level: int = 0:
 @onready var cost_label: Label = $VBoxContainer/HBoxContainer/Cost
 @onready var level_label: Label = $VBoxContainer/HBoxContainer/LevelLabel
 
+@onready var animator: AnimationPlayer = $Animator
+
+
+func _ready() -> void:
+	var screen: UpgradeScreen = get_parent().get_parent()
+	pressed.connect(screen._on_upgrade_pressed)
+
 
 func _on_button_pressed() -> void:
-	pressed.emit()
+	pressed.emit(self)
+
+
+func show_error(error: String) -> void:
+	if Engine.is_editor_hint():
+		return
+	animator.play(&"error")
+	Events.show_error_on_touch.emit(error)
+
+
+func unlock_next_upgrades() -> void:
+	for upgrade: Upgrade in next_upgrades:
+		upgrade.enabled = true
+
+
+func unlocked_max_upgrade() -> void:
+	button.disabled = true

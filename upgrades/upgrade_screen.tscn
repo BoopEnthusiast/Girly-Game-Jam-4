@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://b32qhlexd4few"]
 
 [ext_resource type="Script" uid="uid://6bhxit7wlaj" path="res://upgrades/upgrade_screen.gd" id="1_m60ru"]
-[ext_resource type="Script" uid="uid://ckdkqngu64vet" path="res://upgrades/upgrade_old.gd" id="2_h5hvi"]
 [ext_resource type="PackedScene" uid="uid://dn0bcmb02ivvn" path="res://upgrades/upgrade.tscn" id="3_m818p"]
+[ext_resource type="Script" uid="uid://cjqktod4uwe4u" path="res://upgrades/error_popup.gd" id="4_ot8p5"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m60ru"]
 
@@ -37,32 +37,59 @@ snapping_enabled = false
 minimap_enabled = false
 show_menu = false
 
-[node name="SparkleFurther" type="GraphElement" parent="UpgradeGraph" unique_id=443172466]
+[node name="ErrorPopup" type="Popup" parent="UpgradeGraph" unique_id=817881809]
+transparent_bg = true
+oversampling_override = 1.0
+position = Vector2i(407, 80)
+size = Vector2i(40, 23)
+transparent = true
+script = ExtResource("4_ot8p5")
+
+[node name="PanelContainer" type="PanelContainer" parent="UpgradeGraph/ErrorPopup" unique_id=1449807228]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UpgradeGraph/ErrorPopup/PanelContainer" unique_id=1934336547]
+layout_mode = 2
+text = "Error"
+
+[node name="SparkleFurther" parent="UpgradeGraph" unique_id=751509468 instance=ExtResource("3_m818p")]
 layout_mode = 0
-offset_left = 308.0
-offset_top = 146.0
-offset_right = 375.0
-offset_bottom = 227.0
-position_offset = Vector2(308, 146)
-script = ExtResource("2_h5hvi")
+offset_left = 178.0
+offset_top = 127.0
+offset_right = 259.0
+offset_bottom = 208.0
+position_offset = Vector2(178, 127)
 text = "Sparkle
 Further"
-metadata/_custom_type_script = "uid://ckdkqngu64vet"
+max_level = 5
 
-[node name="MoreGlitter" type="GraphElement" parent="UpgradeGraph" unique_id=560004357]
+[node name="MoreGlitter" parent="UpgradeGraph" unique_id=1072988018 instance=ExtResource("3_m818p")]
 layout_mode = 0
-offset_left = 414.0
-offset_top = 255.0
-offset_right = 489.0
-offset_bottom = 336.0
-position_offset = Vector2(414, 255)
-script = ExtResource("2_h5hvi")
+offset_left = 167.0
+offset_top = 339.0
+offset_right = 248.0
+offset_bottom = 420.0
+position_offset = Vector2(167, 339)
 text = "More
 Glitter!!!"
-metadata/_custom_type_script = "uid://ckdkqngu64vet"
+max_level = 5
 
-[node name="Upgrade" parent="UpgradeGraph" unique_id=751509468 instance=ExtResource("3_m818p")]
-layout_mode = 0
+[node name="CloseUpgrade" type="Button" parent="." unique_id=1300055069]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -39.0
+offset_right = 122.0
+offset_bottom = -8.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Hide Upgrades"
 
 [connection signal="pressed" from="UpgradeGraph/SparkleFurther" to="." method="_on_sparkle_further_pressed"]
 [connection signal="pressed" from="UpgradeGraph/MoreGlitter" to="." method="_on_more_glitter_pressed"]
+[connection signal="pressed" from="CloseUpgrade" to="." method="_on_close_upgrade_pressed"]
