@@ -1,3 +1,4 @@
+class_name GlitterManager
 extends Node2D
 
 
@@ -20,6 +21,8 @@ var glitter_rate: float = 1.0
 var _starting_color := Color(1.0, 0.0, 1.0)
 var _color_icon_increment: int = 0
 
+var queue_rotate_emitter := false
+
 @onready var glitter_emitters: Array[GlitterEmitter] = [$GlitterEmitter, $GlitterEmitter2, $GlitterEmitter3, $GlitterEmitter4, $GlitterEmitter5, $GlitterEmitter6]
 
 
@@ -34,12 +37,10 @@ func rotate_glitter_emitter() -> void:
 	# Activate new one
 	active_glitter_emitter.active = true
 	# Set new color
-	var new_hue: float = fmod(_starting_color.ok_hsl_h + (0.3 * _color_icon_increment), 1.0)
+	var new_hue: float = fmod(_starting_color.ok_hsl_h + (2.7 * _color_icon_increment), 1.0)
 	var new_col := Color.from_ok_hsl(new_hue, _starting_color.ok_hsl_s, _starting_color.ok_hsl_l)
-	print(new_col)
 	new_col *= 2 ** 1
 	new_col.a = 1.0
-	print(new_col)
 	active_glitter_emitter.modulate = new_col
 	# Set new icon
 	active_glitter_emitter.texture = ICONS[_color_icon_increment % ICONS.size()]
@@ -53,7 +54,7 @@ func change_color_and_icon() -> void:
 
 func _on_upgrade_more_glitter() -> void:
 	glitter_rate += 0.5
-	rotate_glitter_emitter()
+	queue_rotate_emitter = true
 
 
 func _on_upgrade_sparkle_further() -> void:

@@ -50,6 +50,8 @@ var level: int = 0:
 
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
 	var screen: UpgradeScreen = get_parent().get_parent()
 	pressed.connect(screen._on_upgrade_pressed)
 

@@ -20,6 +20,7 @@ var _starting_amount: float = amount
 var _starting_velocity_max: float = process_material.initial_velocity_max
 
 @onready var covering_texture: CoveringTexture = $"../../CoveringTexture"
+@onready var glitter_manager: GlitterManager = $".."
 
 
 func _ready() -> void:
@@ -50,6 +51,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event is InputEventMouseButton:
 			if event.button_index == MOUSE_BUTTON_LEFT:
 				if event.pressed and active:
+					if glitter_manager.queue_rotate_emitter:
+						glitter_manager.queue_rotate_emitter = false
+						glitter_manager.rotate_glitter_emitter()
 					emitting = true
 				else:
 					emitting = false
@@ -57,7 +61,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	# Touch-based input
 	elif event is InputEventScreenTouch:
 		if event.pressed and active:
-			emitting = true
+			if glitter_manager.queue_rotate_emitter:
+				glitter_manager.queue_rotate_emitter = false
+				glitter_manager.rotate_glitter_emitter()
 		else:
 			emitting = false
 		global_position = event.position
