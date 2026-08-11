@@ -9,7 +9,7 @@ const LUMINANCE_CUTOFF = 0.99
 
 var luminance: float = 1.0
 
-@onready var progress_bar: ProgressBar = $"../UI/ProgressBar"
+@onready var progress_bar: ProgressBar = $"../../../UI/ProgressBar"
 @onready var screen: Camera2D = $"../Screen"
 
 

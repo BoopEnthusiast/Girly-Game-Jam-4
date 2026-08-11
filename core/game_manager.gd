@@ -2,7 +2,7 @@ extends Node
 
 
 @onready var main_menu: Control = $MainMenu
-@onready var main_game: Node2D = $MainGame
+@onready var main_game_viewport_container: SubViewportContainer = $MainGame
 
 
 func _ready() -> void:
@@ -12,4 +12,4 @@ func _ready() -> void:
 func _on_main_menu_play_pressed() -> void:
 	get_tree().paused = false
 	main_menu.visible = false
-	main_game.visible = true
+	main_game_viewport_container.visible = true

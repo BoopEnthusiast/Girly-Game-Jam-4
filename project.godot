@@ -21,6 +21,7 @@ Events="*uid://c2hj8a0xxbr0l"
 
 [display]
 
+window/hdr/request_hdr_output=true
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 

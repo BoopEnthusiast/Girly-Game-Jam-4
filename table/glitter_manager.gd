@@ -28,6 +28,7 @@ var queue_rotate_emitter := false
 
 func rotate_glitter_emitter() -> void:
 	# Disactivate current one
+	var was_emitting = active_glitter_emitter.emitting
 	active_glitter_emitter.active = false
 	
 	# Get new one
@@ -35,7 +36,9 @@ func rotate_glitter_emitter() -> void:
 	active_glitter_emitter_index %= glitter_emitters.size() - 1
 	
 	# Activate new one
+	active_glitter_emitter.visible = true
 	active_glitter_emitter.active = true
+	active_glitter_emitter.emitting = was_emitting
 	# Set new color
 	var new_hue: float = fmod(_starting_color.ok_hsl_h + (2.7 * _color_icon_increment), 1.0)
 	var new_col := Color.from_ok_hsl(new_hue, _starting_color.ok_hsl_s, _starting_color.ok_hsl_l)
@@ -50,6 +53,11 @@ func rotate_glitter_emitter() -> void:
 
 func change_color_and_icon() -> void:
 	_color_icon_increment += 1
+
+
+func hide_all_emitters() -> void:
+	for emitter: GlitterEmitter in glitter_emitters:
+		emitter.visible = false
 
 
 func _on_upgrade_more_glitter() -> void:

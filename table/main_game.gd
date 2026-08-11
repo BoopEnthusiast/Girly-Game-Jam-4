@@ -2,12 +2,15 @@ class_name MainGame
 extends Node2D
 
 
+signal covering_finishing()
+
+
 @onready var covering_texture: CoveringTexture = $CoveringTexture
-@onready var glitter_manager: Node2D = $GlitterManager
+@onready var glitter_manager: GlitterManager = $GlitterManager
 @onready var screen: Camera2D = $Screen
 
-@onready var upgrade_screen: UpgradeScreen = $UI/UpgradeScreen
-@onready var open_upgrade: Button = $UI/OpenUpgrade
+@onready var upgrade_screen: UpgradeScreen = $"../../UI/UpgradeScreen"
+@onready var open_upgrade: Button = $"../../UI/OpenUpgrade"
 
 
 func _ready() -> void:
@@ -22,9 +25,12 @@ func open_upgrade_screen() -> void:
 
 
 func _on_covering_finished() -> void:
+	await RenderingServer.frame_post_draw
+	covering_finishing.emit()
 	screen.zoom /= 1.1
 	covering_texture.setup_new_layer()
 	upgrade_screen.points += 1
+	glitter_manager.hide_all_emitters()
 	glitter_manager.change_color_and_icon()
 	glitter_manager.rotate_glitter_emitter()
 

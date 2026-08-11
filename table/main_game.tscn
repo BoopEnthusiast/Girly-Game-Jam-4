@@ -1,11 +1,27 @@
 [gd_scene format=3 uid="uid://b8hn7m82swrfa"]
 
 [ext_resource type="Texture2D" uid="uid://daqyakmjcju0m" path="res://table/glitter_icons/star.svg" id="1_0aypj"]
+[ext_resource type="Script" uid="uid://cfn2grah23eiu" path="res://table/previous_cover.gd" id="1_o0dkr"]
 [ext_resource type="Script" uid="uid://tyq88233hpmx" path="res://table/main_game.gd" id="1_ogqce"]
 [ext_resource type="Script" uid="uid://d16jalbop0nwi" path="res://table/glitter_emitter.gd" id="3_4romf"]
 [ext_resource type="Script" uid="uid://dnewqj5whoitr" path="res://table/covering_texture.gd" id="3_ew00r"]
 [ext_resource type="Script" uid="uid://dxt3esw31wl0b" path="res://table/glitter_manager.gd" id="4_cqdbn"]
 [ext_resource type="PackedScene" uid="uid://b32qhlexd4few" path="res://upgrades/upgrade_screen.tscn" id="5_ieflj"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e3jb5"]
+particle_flag_disable_z = true
+angle_min = -179.99998
+angle_max = 180.00002
+inherit_velocity_ratio = 0.01
+spread = 180.0
+initial_velocity_min = 30.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+damping_min = 50.000004
+damping_max = 50.000004
+attractor_interaction_enabled = false
+hue_variation_min = -0.050000023
+hue_variation_max = 0.049999975
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ybn0h"]
 bg_color = Color(0, 0, 0, 0.1882353)
@@ -77,28 +93,26 @@ _data = {
 &"flash": SubResource("Animation_cqdbn")
 }
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e3jb5"]
-particle_flag_disable_z = true
-angle_min = -179.99998
-angle_max = 180.00002
-inherit_velocity_ratio = 0.01
-spread = 180.0
-initial_velocity_min = 30.0
-initial_velocity_max = 50.0
-gravity = Vector3(0, 0, 0)
-damping_min = 50.000004
-damping_max = 50.000004
-attractor_interaction_enabled = false
-hue_variation_min = -0.050000023
-hue_variation_max = 0.049999975
+[node name="SubViewportContainer" type="SubViewportContainer" unique_id=1697101229]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
 
-[node name="MainGame" type="Node2D" unique_id=1361846014]
-script = ExtResource("1_ogqce")
+[node name="SubViewport" type="SubViewport" parent="." unique_id=998465548]
+disable_3d = true
+handle_input_locally = false
+use_hdr_2d = true
+gui_embed_subwindows = true
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
 
-[node name="BackgroundLayer" type="CanvasLayer" parent="." unique_id=1702840497]
+[node name="BackgroundLayer" type="CanvasLayer" parent="SubViewport" unique_id=1702840497]
 layer = -1
 
-[node name="TableBackground" type="ColorRect" parent="BackgroundLayer" unique_id=1380428794]
+[node name="TableBackground" type="ColorRect" parent="SubViewport/BackgroundLayer" unique_id=1380428794]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -108,14 +122,96 @@ mouse_filter = 2
 color = Color(0.91531235, 0.6420845, 0.46439707, 1)
 metadata/_edit_lock_ = true
 
-[node name="CoveringTexture" type="Sprite2D" parent="." unique_id=1070375207]
+[node name="MainGame" type="Node2D" parent="SubViewport" unique_id=1361846014]
+script = ExtResource("1_ogqce")
+
+[node name="PreviousCovers" type="Sprite2D" parent="SubViewport/MainGame" unique_id=1146243111]
+script = ExtResource("1_o0dkr")
+
+[node name="CoveringTexture" type="Sprite2D" parent="SubViewport/MainGame" unique_id=1070375207]
+visible = false
 scale = Vector2(8, 8)
 centered = false
 script = ExtResource("3_ew00r")
 
-[node name="CheckCover" type="Timer" parent="CoveringTexture" unique_id=1082603591]
+[node name="CheckCover" type="Timer" parent="SubViewport/MainGame/CoveringTexture" unique_id=1082603591]
 wait_time = 0.05
 autostart = true
+
+[node name="Screen" type="Camera2D" parent="SubViewport/MainGame" unique_id=971656240]
+
+[node name="GlitterManager" type="Node2D" parent="SubViewport/MainGame" unique_id=617205671]
+script = ExtResource("4_cqdbn")
+
+[node name="GlitterEmitter" type="GPUParticles2D" parent="SubViewport/MainGame/GlitterManager" unique_id=1856584739]
+modulate = Color(1.5720325, 0, 1.5720325, 1)
+position = Vector2(1, 1)
+amount = 50000
+texture = ExtResource("1_0aypj")
+lifetime = 4000.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_e3jb5")
+script = ExtResource("3_4romf")
+
+[node name="GlitterEmitter2" type="GPUParticles2D" parent="SubViewport/MainGame/GlitterManager" unique_id=1695497286]
+modulate = Color(1.6124686, 1.6124686, 1.6124686, 1)
+position = Vector2(1, 1)
+emitting = false
+amount = 50000
+texture = ExtResource("1_0aypj")
+lifetime = 4000.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_e3jb5")
+script = ExtResource("3_4romf")
+active = false
+
+[node name="GlitterEmitter3" type="GPUParticles2D" parent="SubViewport/MainGame/GlitterManager" unique_id=496031874]
+modulate = Color(1.6124686, 1.6124686, 1.6124686, 1)
+position = Vector2(1, 1)
+emitting = false
+amount = 50000
+texture = ExtResource("1_0aypj")
+lifetime = 4000.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_e3jb5")
+script = ExtResource("3_4romf")
+active = false
+
+[node name="GlitterEmitter4" type="GPUParticles2D" parent="SubViewport/MainGame/GlitterManager" unique_id=1446825799]
+modulate = Color(1.6124686, 1.6124686, 1.6124686, 1)
+position = Vector2(1, 1)
+emitting = false
+amount = 50000
+texture = ExtResource("1_0aypj")
+lifetime = 4000.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_e3jb5")
+script = ExtResource("3_4romf")
+active = false
+
+[node name="GlitterEmitter5" type="GPUParticles2D" parent="SubViewport/MainGame/GlitterManager" unique_id=418842988]
+modulate = Color(1.6124686, 1.6124686, 1.6124686, 1)
+position = Vector2(1, 1)
+emitting = false
+amount = 50000
+texture = ExtResource("1_0aypj")
+lifetime = 4000.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_e3jb5")
+script = ExtResource("3_4romf")
+active = false
+
+[node name="GlitterEmitter6" type="GPUParticles2D" parent="SubViewport/MainGame/GlitterManager" unique_id=2048538742]
+modulate = Color(1.6124686, 1.6124686, 1.6124686, 1)
+position = Vector2(1, 1)
+emitting = false
+amount = 50000
+texture = ExtResource("1_0aypj")
+lifetime = 4000.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_e3jb5")
+script = ExtResource("3_4romf")
+active = false
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=927752956]
 
@@ -151,85 +247,11 @@ libraries/ = SubResource("AnimationLibrary_o0dkr")
 [node name="UpgradeScreen" parent="UI" unique_id=1290665312 instance=ExtResource("5_ieflj")]
 visible = false
 
-[node name="Screen" type="Camera2D" parent="." unique_id=971656240]
-
-[node name="GlitterManager" type="Node2D" parent="." unique_id=617205671]
-script = ExtResource("4_cqdbn")
-
-[node name="GlitterEmitter" type="GPUParticles2D" parent="GlitterManager" unique_id=1856584739]
-modulate = Color(1.5720325, 0, 1.5720325, 1)
-position = Vector2(1, 1)
-amount = 50000
-texture = ExtResource("1_0aypj")
-lifetime = 4000.0
-fixed_fps = 60
-process_material = SubResource("ParticleProcessMaterial_e3jb5")
-script = ExtResource("3_4romf")
-
-[node name="GlitterEmitter2" type="GPUParticles2D" parent="GlitterManager" unique_id=1695497286]
-modulate = Color(1.6124686, 1.6124686, 1.6124686, 1)
-position = Vector2(1, 1)
-emitting = false
-amount = 50000
-texture = ExtResource("1_0aypj")
-lifetime = 4000.0
-fixed_fps = 60
-process_material = SubResource("ParticleProcessMaterial_e3jb5")
-script = ExtResource("3_4romf")
-active = false
-
-[node name="GlitterEmitter3" type="GPUParticles2D" parent="GlitterManager" unique_id=496031874]
-modulate = Color(1.6124686, 1.6124686, 1.6124686, 1)
-position = Vector2(1, 1)
-emitting = false
-amount = 50000
-texture = ExtResource("1_0aypj")
-lifetime = 4000.0
-fixed_fps = 60
-process_material = SubResource("ParticleProcessMaterial_e3jb5")
-script = ExtResource("3_4romf")
-active = false
-
-[node name="GlitterEmitter4" type="GPUParticles2D" parent="GlitterManager" unique_id=1446825799]
-modulate = Color(1.6124686, 1.6124686, 1.6124686, 1)
-position = Vector2(1, 1)
-emitting = false
-amount = 50000
-texture = ExtResource("1_0aypj")
-lifetime = 4000.0
-fixed_fps = 60
-process_material = SubResource("ParticleProcessMaterial_e3jb5")
-script = ExtResource("3_4romf")
-active = false
-
-[node name="GlitterEmitter5" type="GPUParticles2D" parent="GlitterManager" unique_id=418842988]
-modulate = Color(1.6124686, 1.6124686, 1.6124686, 1)
-position = Vector2(1, 1)
-emitting = false
-amount = 50000
-texture = ExtResource("1_0aypj")
-lifetime = 4000.0
-fixed_fps = 60
-process_material = SubResource("ParticleProcessMaterial_e3jb5")
-script = ExtResource("3_4romf")
-active = false
-
-[node name="GlitterEmitter6" type="GPUParticles2D" parent="GlitterManager" unique_id=2048538742]
-modulate = Color(1.6124686, 1.6124686, 1.6124686, 1)
-position = Vector2(1, 1)
-emitting = false
-amount = 50000
-texture = ExtResource("1_0aypj")
-lifetime = 4000.0
-fixed_fps = 60
-process_material = SubResource("ParticleProcessMaterial_e3jb5")
-script = ExtResource("3_4romf")
-active = false
-
-[connection signal="finished_covering" from="CoveringTexture" to="." method="_on_covering_finished"]
-[connection signal="timeout" from="CoveringTexture/CheckCover" to="CoveringTexture" method="_on_check_cover_timeout"]
-[connection signal="pressed" from="UI/OpenUpgrade" to="." method="open_upgrade_screen"]
-[connection signal="hide_screen" from="UI/UpgradeScreen" to="." method="_on_hide_upgrade_screen"]
-[connection signal="more_glitter" from="UI/UpgradeScreen" to="GlitterManager" method="_on_upgrade_more_glitter"]
+[connection signal="covering_finishing" from="SubViewport/MainGame" to="SubViewport/MainGame/PreviousCovers" method="_on_finished_covering"]
+[connection signal="finished_covering" from="SubViewport/MainGame/CoveringTexture" to="SubViewport/MainGame" method="_on_covering_finished"]
+[connection signal="timeout" from="SubViewport/MainGame/CoveringTexture/CheckCover" to="SubViewport/MainGame/CoveringTexture" method="_on_check_cover_timeout"]
+[connection signal="pressed" from="UI/OpenUpgrade" to="SubViewport/MainGame" method="open_upgrade_screen"]
+[connection signal="hide_screen" from="UI/UpgradeScreen" to="SubViewport/MainGame" method="_on_hide_upgrade_screen"]
+[connection signal="more_glitter" from="UI/UpgradeScreen" to="SubViewport/MainGame/GlitterManager" method="_on_upgrade_more_glitter"]
 [connection signal="points_updated" from="UI/UpgradeScreen" to="UI/OpenUpgrade" method="_on_upgrade_points_updated"]
-[connection signal="sparkle_further" from="UI/UpgradeScreen" to="GlitterManager" method="_on_upgrade_sparkle_further"]
+[connection signal="sparkle_further" from="UI/UpgradeScreen" to="SubViewport/MainGame/GlitterManager" method="_on_upgrade_sparkle_further"]
