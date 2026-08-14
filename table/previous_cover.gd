@@ -6,7 +6,7 @@ extends Sprite2D
 
 
 func _ready() -> void:
-	position = get_window().size / 2.0
+	position = get_viewport().size / 2.0
 
 
 func _on_finished_covering() -> void:
@@ -14,3 +14,4 @@ func _on_finished_covering() -> void:
 	var image: Image = viewport_texture.get_image()
 	texture = ImageTexture.create_from_image(image)
 	scale = Vector2.ONE / screen.zoom
+	position = get_viewport().size / 2.0

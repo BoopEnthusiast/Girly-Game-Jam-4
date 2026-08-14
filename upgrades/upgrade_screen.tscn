@@ -6,6 +6,24 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m60ru"]
 
+[sub_resource type="GDScript" id="GDScript_o0dkr"]
+script/source = "extends GraphEdit
+
+
+var is_panning: bool = false
+
+
+func _gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			is_panning = event.pressed
+			accept_event() 
+	
+	if event is InputEventMouseMotion and is_panning:
+		scroll_offset -= event.relative / zoom
+		accept_event()
+"
+
 [node name="UpgradeScreen" type="Control" unique_id=1290665312]
 layout_mode = 3
 anchors_preset = 15
@@ -36,6 +54,7 @@ show_grid = false
 snapping_enabled = false
 minimap_enabled = false
 show_menu = false
+script = SubResource("GDScript_o0dkr")
 
 [node name="ErrorPopup" type="Popup" parent="UpgradeGraph" unique_id=817881809]
 transparent_bg = true
