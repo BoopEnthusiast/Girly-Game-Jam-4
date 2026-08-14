@@ -14,7 +14,7 @@ const BASE_CIRCLE_SIZE = 15.0
 
 var circle_size: float = 1.0
 var glitter_rate: float = 1.0
-
+ 
 var _mat: ParticleProcessMaterial = process_material
 var _starting_amount: float = amount
 var _starting_velocity_max: float = process_material.initial_velocity_max

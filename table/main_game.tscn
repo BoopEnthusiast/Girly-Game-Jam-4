@@ -7,6 +7,10 @@
 [ext_resource type="Script" uid="uid://dnewqj5whoitr" path="res://table/covering_texture.gd" id="3_ew00r"]
 [ext_resource type="Script" uid="uid://dxt3esw31wl0b" path="res://table/glitter_manager.gd" id="4_cqdbn"]
 [ext_resource type="PackedScene" uid="uid://b32qhlexd4few" path="res://upgrades/upgrade_screen.tscn" id="5_ieflj"]
+[ext_resource type="Script" uid="uid://dwwmn5xqbj2ed" path="res://table/sprinklers.gd" id="5_pitd1"]
+[ext_resource type="Script" uid="uid://bgoeg3t3g0mt" path="res://table/glitter_sprinkler.gd" id="7_t73t8"]
+[ext_resource type="Texture2D" uid="uid://bqfuyoax1on17" path="res://table/glitter_icons/heart.svg" id="8_t73t8"]
+[ext_resource type="Texture2D" uid="uid://8knc0ncwwmny" path="res://table/glitter_icons/flower.svg" id="9_88s2o"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e3jb5"]
 particle_flag_disable_z = true
@@ -129,7 +133,6 @@ script = ExtResource("1_ogqce")
 script = ExtResource("1_o0dkr")
 
 [node name="CoveringTexture" type="Sprite2D" parent="SubViewport/MainGame" unique_id=1070375207]
-visible = false
 scale = Vector2(8, 8)
 centered = false
 script = ExtResource("3_ew00r")
@@ -142,6 +145,60 @@ autostart = true
 
 [node name="GlitterManager" type="Node2D" parent="SubViewport/MainGame" unique_id=617205671]
 script = ExtResource("4_cqdbn")
+
+[node name="Sprinklers" type="Node2D" parent="SubViewport/MainGame/GlitterManager" unique_id=977988344]
+script = ExtResource("5_pitd1")
+
+[node name="GlitterSprinkler" type="GPUParticles2D" parent="SubViewport/MainGame/GlitterManager/Sprinklers" unique_id=1732872256]
+visible = false
+modulate = Color(1.5720325, 0, 1.5720325, 1)
+position = Vector2(1, 1)
+emitting = false
+amount = 50000
+texture = ExtResource("1_0aypj")
+lifetime = 4000.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_e3jb5")
+script = ExtResource("7_t73t8")
+
+[node name="GlitterSprinkler2" type="GPUParticles2D" parent="SubViewport/MainGame/GlitterManager/Sprinklers" unique_id=1926760346]
+visible = false
+modulate = Color(0, 1.5720325, 1.5720325, 1)
+position = Vector2(1, 1)
+emitting = false
+amount = 50000
+texture = ExtResource("8_t73t8")
+lifetime = 4000.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_e3jb5")
+script = ExtResource("7_t73t8")
+starting_angle = 3.0
+
+[node name="GlitterSprinkler3" type="GPUParticles2D" parent="SubViewport/MainGame/GlitterManager/Sprinklers" unique_id=1914993257]
+visible = false
+modulate = Color(1.5720325, 1.5720325, 0, 1)
+position = Vector2(1, 1)
+emitting = false
+amount = 50000
+texture = ExtResource("9_88s2o")
+lifetime = 4000.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_e3jb5")
+script = ExtResource("7_t73t8")
+starting_angle = 5.0
+
+[node name="GlitterSprinkler4" type="GPUParticles2D" parent="SubViewport/MainGame/GlitterManager/Sprinklers" unique_id=1764779531]
+visible = false
+modulate = Color(1.5720325, 1.5720325, 0, 1)
+position = Vector2(1, 1)
+emitting = false
+amount = 50000
+texture = ExtResource("9_88s2o")
+lifetime = 4000.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_e3jb5")
+script = ExtResource("7_t73t8")
+starting_angle = 7.0
 
 [node name="GlitterEmitter" type="GPUParticles2D" parent="SubViewport/MainGame/GlitterManager" unique_id=1856584739]
 modulate = Color(1.5720325, 0, 1.5720325, 1)
@@ -255,3 +312,6 @@ visible = false
 [connection signal="more_glitter" from="UI/UpgradeScreen" to="SubViewport/MainGame/GlitterManager" method="_on_upgrade_more_glitter"]
 [connection signal="points_updated" from="UI/UpgradeScreen" to="UI/OpenUpgrade" method="_on_upgrade_points_updated"]
 [connection signal="sparkle_further" from="UI/UpgradeScreen" to="SubViewport/MainGame/GlitterManager" method="_on_upgrade_sparkle_further"]
+[connection signal="sparkle_sprinkler" from="UI/UpgradeScreen" to="SubViewport/MainGame/GlitterManager/Sprinklers" method="_on_upgrade_sparkle_sprinkler"]
+[connection signal="sprinkler_size" from="UI/UpgradeScreen" to="SubViewport/MainGame/GlitterManager/Sprinklers" method="_on_upgrade_sprinkler_size"]
+[connection signal="sprinkler_spread" from="UI/UpgradeScreen" to="SubViewport/MainGame/GlitterManager/Sprinklers" method="_on_upgrade_sprinkler_spread"]

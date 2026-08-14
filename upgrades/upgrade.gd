@@ -36,6 +36,7 @@ signal pressed(node: Upgrade)
 			await ready
 		button.disabled = not value
 @export var next_upgrades: Array[Upgrade]
+@export var level_costs: Array[int]
 
 var level: int = 0:
 	set(value):
