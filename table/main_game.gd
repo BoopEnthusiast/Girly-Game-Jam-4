@@ -27,7 +27,7 @@ func open_upgrade_screen() -> void:
 func _on_covering_finished() -> void:
 	await RenderingServer.frame_post_draw
 	covering_finishing.emit()
-	screen.zoom /= 1.1
+	screen.zoom /= 1.05
 	covering_texture.setup_new_layer()
 	upgrade_screen.points += 1
 	glitter_manager.hide_all_emitters()

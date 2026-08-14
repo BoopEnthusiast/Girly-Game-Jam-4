@@ -77,26 +77,27 @@ text = "Error"
 
 [node name="SparkleFurther" parent="UpgradeGraph" unique_id=751509468 instance=ExtResource("3_m818p")]
 layout_mode = 0
-offset_left = 178.0
-offset_top = 127.0
-offset_right = 259.0
-offset_bottom = 208.0
-position_offset = Vector2(178, 127)
+offset_left = 203.0
+offset_top = 436.0
+offset_right = 284.0
+offset_bottom = 517.0
+position_offset = Vector2(203, 436)
 text = "Sparkle
-Further"
+Spread"
 max_level = 5
 level_costs = Array[int]([1, 1, 2, 2, 3])
 
-[node name="MoreGlitter" parent="UpgradeGraph" unique_id=1072988018 instance=ExtResource("3_m818p")]
+[node name="MoreGlitter" parent="UpgradeGraph" unique_id=1072988018 node_paths=PackedStringArray("next_upgrades") instance=ExtResource("3_m818p")]
 layout_mode = 0
-offset_left = 167.0
-offset_top = 339.0
-offset_right = 248.0
-offset_bottom = 420.0
-position_offset = Vector2(167, 339)
+offset_left = 247.0
+offset_top = 137.0
+offset_right = 328.0
+offset_bottom = 218.0
+position_offset = Vector2(247, 137)
 text = "More
 Glitter!!!"
 max_level = 5
+next_upgrades = [NodePath("../SparkleSprinkler")]
 level_costs = Array[int]([1, 1, 1, 2, 2])
 
 [node name="SparkleSprinkler" parent="UpgradeGraph" unique_id=3722212 node_paths=PackedStringArray("next_upgrades") instance=ExtResource("3_m818p")]
@@ -109,6 +110,7 @@ position_offset = Vector2(410, 98)
 text = "Sparkle
 Sprinkler"
 max_level = 4
+enabled = false
 next_upgrades = [NodePath("../SprinklerSize"), NodePath("../SprinklerSpread")]
 level_costs = Array[int]([1, 2, 3, 4])
 
@@ -133,7 +135,7 @@ offset_right = 668.0
 offset_bottom = 298.0
 position_offset = Vector2(587, 217)
 text = "Sprinkler
-Spread"
+Glitter"
 max_level = 3
 enabled = false
 level_costs = Array[int]([1, 2, 2])
@@ -143,9 +145,8 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -39.0
-offset_right = 122.0
-offset_bottom = -8.0
+offset_top = -56.0
+offset_right = 247.52
 grow_vertical = 0
 theme_override_font_sizes/font_size = 30
 text = "Hide Upgrades"

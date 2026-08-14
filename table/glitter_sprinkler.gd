@@ -24,7 +24,6 @@ var _direction: Vector2 = Vector2.ZERO
 
 
 func _ready() -> void:
-	global_position = get_viewport_rect().get_center()
 	_direction = Vector2.from_angle(PI / 4.0 * starting_angle)
 
 
