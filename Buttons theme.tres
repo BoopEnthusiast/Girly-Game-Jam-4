@@ -1,0 +1,40 @@
+[gd_resource type="Theme" format=3 uid="uid://cuuxkepxid6qi"]
+
+[ext_resource type="Texture2D" uid="uid://d3dwl4tbn673o" path="res://UI Spritesheet.png" id="1_4vlc4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m818p"]
+atlas = ExtResource("1_4vlc4")
+region = Rect2(0, 1400, 1400, 600)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yd5ak"]
+texture = SubResource("AtlasTexture_m818p")
+region_rect = Rect2(-10, -10, 1400, 600)
+modulate_color = Color(0.08701605, 0.08701607, 0.08701605, 0.41568628)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vu3bt"]
+texture = SubResource("AtlasTexture_m818p")
+region_rect = Rect2(-10, -10, 1400, 600)
+modulate_color = Color(0.23594874, 0.23594871, 0.23594868, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8ag5d"]
+texture = SubResource("AtlasTexture_m818p")
+region_rect = Rect2(-10, -10, 1400, 600)
+modulate_color = Color(0.19793713, 0.19793728, 0.19793713, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4vdqg"]
+texture = SubResource("AtlasTexture_m818p")
+region_rect = Rect2(-10, -10, 1400, 600)
+modulate_color = Color(0.13464913, 0.1346491, 0.1346491, 1)
+
+[resource]
+Button/colors/icon_disabled_color = Color(0.8745098, 0.8745098, 0.8745098, 0.5019608)
+Button/colors/icon_focus_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+Button/colors/icon_hover_color = Color(0.92134285, 0.9213429, 0.9213428, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/styles/disabled = SubResource("StyleBoxTexture_yd5ak")
+Button/styles/focus = null
+Button/styles/hover = SubResource("StyleBoxTexture_vu3bt")
+Button/styles/normal = SubResource("StyleBoxTexture_8ag5d")
+Button/styles/pressed = SubResource("StyleBoxTexture_4vdqg")

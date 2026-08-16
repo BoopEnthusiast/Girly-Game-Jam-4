@@ -11,9 +11,12 @@ config_version=5
 [application]
 
 config/name="Girly Game Jam 4"
-run/main_scene="uid://blsr1utkest7w"
+run/main_scene="uid://b8hn7m82swrfa"
 config/features=PackedStringArray("4.7", "Forward Plus")
+boot_splash/bg_color=Color(0.95747477, 0.70030355, 0.827426, 1)
+boot_splash/image="uid://dv4dml35upigf"
 config/icon="res://icon.svg"
+boot_splash/minimum_display_time=1000
 
 [autoload]
 

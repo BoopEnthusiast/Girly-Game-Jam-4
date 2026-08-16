@@ -54,6 +54,8 @@ fill_to = Vector2(0.09090909, 0)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8emrq"]
 texture = SubResource("GradientTexture2D_ieflj")
 
+[sub_resource type="Theme" id="Theme_vtg6u"]
+
 [sub_resource type="GDScript" id="GDScript_cqdbn"]
 script/source = "extends Button
 
@@ -304,6 +306,7 @@ offset_top = -31.0
 offset_right = 98.0
 grow_vertical = 0
 mouse_filter = 1
+theme = SubResource("Theme_vtg6u")
 theme_override_font_sizes/font_size = 30
 text = "Upgrade (0)"
 script = SubResource("GDScript_cqdbn")
