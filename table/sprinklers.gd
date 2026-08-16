@@ -25,3 +25,8 @@ func _on_upgrade_sprinkler_size() -> void:
 func _on_upgrade_sprinkler_spread() -> void:
 	for sprinkler: GlitterSprinkler in sprinklers:
 		sprinkler.glitter_rate += 0.5
+
+
+func _on_covering_finishing() -> void:
+	for sprinkler: GlitterSprinkler in sprinklers:
+		sprinkler.restart()

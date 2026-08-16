@@ -26,6 +26,52 @@ func _gui_input(event: InputEvent) -> void:
 		accept_event()
 "
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jd4pf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ashqo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r4rt3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jgqep"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x72ro"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bb7nk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b38da"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7ygq1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t8cxn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5c0hm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yy5o5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_olxwc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_217fy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h67gx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c8650"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cdqcm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jcwkd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uq13p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hh1oo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1bddj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ldmy4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kdsny"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_66ava"]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_fvx8q"]
 atlas = ExtResource("4_jd4pf")
 region = Rect2(2200, 780, 530, 530)
@@ -46,13 +92,41 @@ region = Rect2(1420, 1410, 590, 520)
 atlas = ExtResource("4_jd4pf")
 region = Rect2(2200, 1410, 520, 400)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jd4pf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashqo"]
+atlas = ExtResource("4_jd4pf")
+region = Rect2(0, 1400, 1400, 600)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jgqep"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r4rt3"]
+texture = SubResource("AtlasTexture_ashqo")
+region_rect = Rect2(-10, -10, 1400, 600)
+modulate_color = Color(0.19793713, 0.19793728, 0.19793713, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7ygq1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_x72ro"]
+atlas = ExtResource("4_jd4pf")
+region = Rect2(0, 1400, 1400, 600)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yy5o5"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nspsv"]
+texture = SubResource("AtlasTexture_x72ro")
+region_rect = Rect2(-10, -10, 1400, 600)
+modulate_color = Color(0.13464913, 0.1346491, 0.1346491, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pumwo"]
+atlas = ExtResource("4_jd4pf")
+region = Rect2(0, 1400, 1400, 600)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b38da"]
+texture = SubResource("AtlasTexture_pumwo")
+region_rect = Rect2(-10, -10, 1400, 600)
+modulate_color = Color(0.23594874, 0.23594871, 0.23594868, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bb7nk"]
+atlas = ExtResource("4_jd4pf")
+region = Rect2(0, 1400, 1400, 600)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t8cxn"]
+texture = SubResource("AtlasTexture_bb7nk")
+region_rect = Rect2(-10, -10, 1400, 600)
+modulate_color = Color(0.08701605, 0.08701607, 0.08701605, 0.41568628)
 
 [sub_resource type="InputEventKey" id="InputEventKey_7ygq1"]
 device = -1
@@ -137,18 +211,147 @@ grow_vertical = 2
 layout_mode = 2
 text = "Error"
 
-[node name="SparkleFurther" parent="UpgradeGraph" unique_id=751509468 instance=ExtResource("3_m818p")]
+[node name="Line" type="GraphNode" parent="UpgradeGraph" unique_id=623412318]
+custom_maximum_size = Vector2(86, 74)
 layout_mode = 0
-offset_left = 256.0
-offset_top = 327.0
-offset_right = 342.0
-offset_bottom = 418.0
-position_offset = Vector2(256, 327)
+offset_left = 247.0
+offset_top = 139.0
+offset_right = 333.0
+offset_bottom = 213.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_jd4pf")
+theme_override_styles/panel_selected = SubResource("StyleBoxEmpty_ashqo")
+theme_override_styles/panel_focus = SubResource("StyleBoxEmpty_r4rt3")
+theme_override_styles/titlebar = SubResource("StyleBoxEmpty_jgqep")
+theme_override_styles/titlebar_selected = SubResource("StyleBoxEmpty_x72ro")
+theme_override_styles/slot = SubResource("StyleBoxEmpty_bb7nk")
+theme_override_styles/slot_selected = SubResource("StyleBoxEmpty_b38da")
+position_offset = Vector2(247, 139)
+draggable = false
+selectable = false
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+metadata/_edit_lock_ = true
+
+[node name="Control" type="Control" parent="UpgradeGraph/Line" unique_id=204404011]
+layout_mode = 2
+
+[node name="Line2" type="GraphNode" parent="UpgradeGraph" unique_id=789875487]
+custom_maximum_size = Vector2(86, 74)
+layout_mode = 0
+offset_left = 461.0
+offset_top = 45.0
+offset_right = 547.0
+offset_bottom = 119.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7ygq1")
+theme_override_styles/panel_selected = SubResource("StyleBoxEmpty_t8cxn")
+theme_override_styles/panel_focus = SubResource("StyleBoxEmpty_5c0hm")
+theme_override_styles/titlebar = SubResource("StyleBoxEmpty_yy5o5")
+theme_override_styles/titlebar_selected = SubResource("StyleBoxEmpty_olxwc")
+theme_override_styles/slot = SubResource("StyleBoxEmpty_217fy")
+theme_override_styles/slot_selected = SubResource("StyleBoxEmpty_h67gx")
+position_offset = Vector2(461, 45)
+draggable = false
+selectable = false
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+metadata/_edit_lock_ = true
+
+[node name="Control" type="Control" parent="UpgradeGraph/Line2" unique_id=1242950839]
+layout_mode = 2
+
+[node name="Line3" type="GraphNode" parent="UpgradeGraph" unique_id=1007972784]
+custom_maximum_size = Vector2(86, 74)
+layout_mode = 0
+offset_left = 684.0
+offset_top = 76.0
+offset_right = 770.0
+offset_bottom = 150.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7ygq1")
+theme_override_styles/panel_selected = SubResource("StyleBoxEmpty_c8650")
+theme_override_styles/panel_focus = SubResource("StyleBoxEmpty_cdqcm")
+theme_override_styles/titlebar = SubResource("StyleBoxEmpty_yy5o5")
+theme_override_styles/titlebar_selected = SubResource("StyleBoxEmpty_jcwkd")
+theme_override_styles/slot = SubResource("StyleBoxEmpty_uq13p")
+theme_override_styles/slot_selected = SubResource("StyleBoxEmpty_hh1oo")
+position_offset = Vector2(684, 76)
+draggable = false
+selectable = false
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+metadata/_edit_lock_ = true
+
+[node name="Control" type="Control" parent="UpgradeGraph/Line3" unique_id=1589431140]
+layout_mode = 2
+
+[node name="Line4" type="GraphNode" parent="UpgradeGraph" unique_id=1038385519]
+custom_maximum_size = Vector2(86, 74)
+layout_mode = 0
+offset_left = 637.0
+offset_top = 262.0
+offset_right = 723.0
+offset_bottom = 336.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7ygq1")
+theme_override_styles/panel_selected = SubResource("StyleBoxEmpty_1bddj")
+theme_override_styles/panel_focus = SubResource("StyleBoxEmpty_ldmy4")
+theme_override_styles/titlebar = SubResource("StyleBoxEmpty_yy5o5")
+theme_override_styles/titlebar_selected = SubResource("StyleBoxEmpty_kdsny")
+theme_override_styles/slot_selected = SubResource("StyleBoxEmpty_66ava")
+position_offset = Vector2(637, 262)
+draggable = false
+selectable = false
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+metadata/_edit_lock_ = true
+
+[node name="Control" type="Control" parent="UpgradeGraph/Line4" unique_id=1685820008]
+layout_mode = 2
+
+[node name="SparkleFurther" parent="UpgradeGraph" unique_id=751509468 instance=ExtResource("3_m818p")]
+custom_maximum_size = Vector2(86, 91)
+layout_mode = 0
+offset_left = 259.0
+offset_top = 323.0
+offset_right = 345.0
+offset_bottom = 414.0
+position_offset = Vector2(259, 323)
 icon = SubResource("AtlasTexture_fvx8q")
 max_level = 5
 level_costs = Array[int]([1, 1, 2, 2, 3])
 
 [node name="MoreGlitter" parent="UpgradeGraph" unique_id=1072988018 node_paths=PackedStringArray("next_upgrades") instance=ExtResource("3_m818p")]
+custom_maximum_size = Vector2(86, 73)
 layout_mode = 0
 offset_left = 247.0
 offset_top = 137.0
@@ -162,6 +365,7 @@ next_upgrades = [NodePath("../SparkleSprinkler")]
 level_costs = Array[int]([1, 1, 1, 2, 2])
 
 [node name="SparkleSprinkler" parent="UpgradeGraph" unique_id=3722212 node_paths=PackedStringArray("next_upgrades") instance=ExtResource("3_m818p")]
+custom_maximum_size = Vector2(86, 98)
 layout_mode = 0
 offset_left = 462.0
 offset_top = 41.0
@@ -176,6 +380,7 @@ next_upgrades = [NodePath("../SprinklerSize"), NodePath("../SprinklerSpread")]
 level_costs = Array[int]([1, 2, 3, 4])
 
 [node name="SprinklerSize" parent="UpgradeGraph" unique_id=1077959242 instance=ExtResource("3_m818p")]
+custom_maximum_size = Vector2(86, 89)
 layout_mode = 0
 offset_left = 688.0
 offset_top = 71.0
@@ -189,6 +394,7 @@ enabled = false
 level_costs = Array[int]([1, 2, 2])
 
 [node name="SprinklerSpread" parent="UpgradeGraph" unique_id=159887325 instance=ExtResource("3_m818p")]
+custom_maximum_size = Vector2(86, 74)
 layout_mode = 0
 offset_left = 637.0
 offset_top = 259.0
@@ -200,98 +406,6 @@ cost_texture_index = 4
 max_level = 3
 enabled = false
 level_costs = Array[int]([1, 2, 2])
-
-[node name="Line" type="GraphNode" parent="UpgradeGraph" unique_id=623412318]
-layout_mode = 0
-offset_left = 247.0
-offset_top = 139.0
-offset_right = 333.0
-offset_bottom = 213.0
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxEmpty_jd4pf")
-theme_override_styles/titlebar = SubResource("StyleBoxEmpty_jgqep")
-position_offset = Vector2(247, 139)
-slot/0/left_enabled = false
-slot/0/left_type = 0
-slot/0/left_color = Color(1, 1, 1, 1)
-slot/0/left_icon = null
-slot/0/right_enabled = true
-slot/0/right_type = 0
-slot/0/right_color = Color(1, 1, 1, 1)
-slot/0/right_icon = null
-slot/0/draw_stylebox = true
-
-[node name="Control" type="Control" parent="UpgradeGraph/Line" unique_id=204404011]
-layout_mode = 2
-
-[node name="Line2" type="GraphNode" parent="UpgradeGraph" unique_id=789875487]
-layout_mode = 0
-offset_left = 461.0
-offset_top = 45.0
-offset_right = 547.0
-offset_bottom = 119.0
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxEmpty_7ygq1")
-theme_override_styles/titlebar = SubResource("StyleBoxEmpty_yy5o5")
-position_offset = Vector2(461, 45)
-slot/0/left_enabled = true
-slot/0/left_type = 0
-slot/0/left_color = Color(1, 1, 1, 1)
-slot/0/left_icon = null
-slot/0/right_enabled = true
-slot/0/right_type = 0
-slot/0/right_color = Color(1, 1, 1, 1)
-slot/0/right_icon = null
-slot/0/draw_stylebox = true
-
-[node name="Control" type="Control" parent="UpgradeGraph/Line2" unique_id=1242950839]
-layout_mode = 2
-
-[node name="Line3" type="GraphNode" parent="UpgradeGraph" unique_id=1007972784]
-layout_mode = 0
-offset_left = 684.0
-offset_top = 76.0
-offset_right = 770.0
-offset_bottom = 150.0
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxEmpty_7ygq1")
-theme_override_styles/titlebar = SubResource("StyleBoxEmpty_yy5o5")
-position_offset = Vector2(684, 76)
-slot/0/left_enabled = true
-slot/0/left_type = 0
-slot/0/left_color = Color(1, 1, 1, 1)
-slot/0/left_icon = null
-slot/0/right_enabled = false
-slot/0/right_type = 0
-slot/0/right_color = Color(1, 1, 1, 1)
-slot/0/right_icon = null
-slot/0/draw_stylebox = true
-
-[node name="Control" type="Control" parent="UpgradeGraph/Line3" unique_id=1589431140]
-layout_mode = 2
-
-[node name="Line4" type="GraphNode" parent="UpgradeGraph" unique_id=1038385519]
-layout_mode = 0
-offset_left = 637.0
-offset_top = 262.0
-offset_right = 723.0
-offset_bottom = 336.0
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxEmpty_7ygq1")
-theme_override_styles/titlebar = SubResource("StyleBoxEmpty_yy5o5")
-position_offset = Vector2(637, 262)
-slot/0/left_enabled = true
-slot/0/left_type = 0
-slot/0/left_color = Color(1, 1, 1, 1)
-slot/0/left_icon = null
-slot/0/right_enabled = false
-slot/0/right_type = 0
-slot/0/right_color = Color(1, 1, 1, 1)
-slot/0/right_icon = null
-slot/0/draw_stylebox = true
-
-[node name="Control" type="Control" parent="UpgradeGraph/Line4" unique_id=1685820008]
-layout_mode = 2
 
 [node name="CloseUpgrade" type="Button" parent="." unique_id=1300055069]
 layout_mode = 1
@@ -309,6 +423,10 @@ theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/icon_hover_color = Color(0.9490196, 0.9490196, 0.9490196, 1)
 theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/icon_disabled_color = Color(0.8745098, 0.8745098, 0.8745098, 0.5019608)
+theme_override_styles/normal = SubResource("StyleBoxTexture_r4rt3")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_nspsv")
+theme_override_styles/hover = SubResource("StyleBoxTexture_b38da")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_t8cxn")
 shortcut = SubResource("Shortcut_jgqep")
 icon = SubResource("AtlasTexture_m818p")
 icon_alignment = 1

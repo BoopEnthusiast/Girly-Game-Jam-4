@@ -5,7 +5,7 @@ extends Sprite2D
 signal finished_covering()
 
 const RESOLUTION_FACTOR = 8.0
-const LUMINANCE_CUTOFF = 0.99
+const LUMINANCE_CUTOFF = 0.5
 
 var luminance: float = 1.0
 

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b8hn7m82swrfa"]
 
 [ext_resource type="Texture2D" uid="uid://daqyakmjcju0m" path="res://table/glitter_icons/star.svg" id="1_0aypj"]
+[ext_resource type="Texture2D" uid="uid://c2d5hiwdmp7kk" path="res://table_background.png" id="1_88s2o"]
 [ext_resource type="Script" uid="uid://cfn2grah23eiu" path="res://table/previous_cover.gd" id="1_o0dkr"]
 [ext_resource type="Script" uid="uid://tyq88233hpmx" path="res://table/main_game.gd" id="1_ogqce"]
 [ext_resource type="Script" uid="uid://d16jalbop0nwi" path="res://table/glitter_emitter.gd" id="3_4romf"]
@@ -11,6 +12,23 @@
 [ext_resource type="Script" uid="uid://bgoeg3t3g0mt" path="res://table/glitter_sprinkler.gd" id="7_t73t8"]
 [ext_resource type="Texture2D" uid="uid://bqfuyoax1on17" path="res://table/glitter_icons/heart.svg" id="8_t73t8"]
 [ext_resource type="Texture2D" uid="uid://8knc0ncwwmny" path="res://table/glitter_icons/flower.svg" id="9_88s2o"]
+[ext_resource type="Theme" uid="uid://cuuxkepxid6qi" path="res://Buttons theme.tres" id="12_27fem"]
+[ext_resource type="Texture2D" uid="uid://d3dwl4tbn673o" path="res://UI Spritesheet.png" id="13_6g82a"]
+
+[sub_resource type="GDScript" id="GDScript_27fem"]
+script/source = "extends Sprite2D
+
+
+
+func _ready() -> void:
+	get_viewport().size_changed.connect(_change_position)
+	_change_position()
+
+
+
+func _change_position() -> void:
+	global_position = get_viewport_rect().get_center()
+"
 
 [sub_resource type="Curve" id="Curve_t73t8"]
 _limits = [1.0, 1.5, 0.0, 1.0]
@@ -54,13 +72,36 @@ fill_to = Vector2(0.09090909, 0)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8emrq"]
 texture = SubResource("GradientTexture2D_ieflj")
 
-[sub_resource type="Theme" id="Theme_vtg6u"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_27fem"]
+atlas = ExtResource("13_6g82a")
+region = Rect2(60, 820, 980, 590)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6g82a"]
+texture = SubResource("AtlasTexture_27fem")
+region_rect = Rect2(-10, -10, 980, 590)
+modulate_color = Color(0.19793713, 0.19793728, 0.19793713, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_27fem"]
+texture = SubResource("AtlasTexture_27fem")
+region_rect = Rect2(-10, -10, 980, 590)
+modulate_color = Color(0.13464913, 0.1346491, 0.1346491, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p3r4c"]
+texture = SubResource("AtlasTexture_27fem")
+region_rect = Rect2(-10, -10, 980, 590)
+modulate_color = Color(0.23594874, 0.23594871, 0.23594868, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dq1h5"]
+texture = SubResource("AtlasTexture_27fem")
+region_rect = Rect2(-10, -10, 980, 590)
+modulate_color = Color(0.08701605, 0.08701607, 0.08701605, 0.41568628)
 
 [sub_resource type="GDScript" id="GDScript_cqdbn"]
 script/source = "extends Button
 
 
 @onready var flash: AnimationPlayer = $Flash
+@onready var points_texture: TextureRect = $\"../Points\"
 
 var previous_points: int = 0
 
@@ -69,7 +110,8 @@ func _on_upgrade_points_updated(points: int) -> void:
 	if points > previous_points:
 		flash.play(\"flash\")
 	previous_points = points
-	text = \"Upgrade (%d)\" % points
+	var tex: AtlasTexture = points_texture.texture
+	tex.region.position.x = points * 400.0
 "
 
 [sub_resource type="Animation" id="Animation_ieflj"]
@@ -81,6 +123,18 @@ tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Points:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -101,12 +155,28 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 0, 1), Color(1, 1, 1, 1), Color(1, 1, 0, 1), Color(1, 1, 1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Points:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 0, 1), Color(1, 1, 1, 1), Color(1, 1, 0, 1), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o0dkr"]
 _data = {
 &"RESET": SubResource("Animation_ieflj"),
 &"flash": SubResource("Animation_cqdbn")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6g82a"]
+atlas = ExtResource("13_6g82a")
+region = Rect2(0, 0, 400, 400)
 
 [node name="SubViewportContainer" type="SubViewportContainer" unique_id=1697101229]
 anchors_preset = 15
@@ -116,26 +186,25 @@ grow_horizontal = 2
 grow_vertical = 2
 stretch = true
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=586709112]
+layer = -1
+
+[node name="TableBackground" type="Sprite2D" parent="CanvasLayer" unique_id=1103130587]
+texture_repeat = 3
+texture = ExtResource("1_88s2o")
+offset = Vector2(5.86, 0)
+region_enabled = true
+region_rect = Rect2(-16384, -8192, 36864, 18432)
+script = SubResource("GDScript_27fem")
+
 [node name="SubViewport" type="SubViewport" parent="." unique_id=998465548]
 disable_3d = true
+transparent_bg = true
 handle_input_locally = false
 use_hdr_2d = true
 gui_embed_subwindows = true
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
-
-[node name="BackgroundLayer" type="CanvasLayer" parent="SubViewport" unique_id=1702840497]
-layer = -1
-
-[node name="TableBackground" type="ColorRect" parent="SubViewport/BackgroundLayer" unique_id=1380428794]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0.91531235, 0.6420845, 0.46439707, 1)
-metadata/_edit_lock_ = true
 
 [node name="MainGame" type="Node2D" parent="SubViewport" unique_id=1361846014]
 script = ExtResource("1_ogqce")
@@ -154,6 +223,9 @@ wait_time = 0.05
 autostart = true
 
 [node name="Screen" type="Camera2D" parent="SubViewport/MainGame" unique_id=971656240]
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="SubViewport/MainGame/Screen" unique_id=111666679]
+remote_path = NodePath("../../../../CanvasLayer/TableBackground")
 
 [node name="GlitterManager" type="Node2D" parent="SubViewport/MainGame" unique_id=617205671]
 script = ExtResource("4_cqdbn")
@@ -302,13 +374,18 @@ show_percentage = false
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -31.0
-offset_right = 98.0
+offset_top = -153.0
+offset_right = 254.13559
 grow_vertical = 0
 mouse_filter = 1
-theme = SubResource("Theme_vtg6u")
-theme_override_font_sizes/font_size = 30
-text = "Upgrade (0)"
+theme = ExtResource("12_27fem")
+theme_override_styles/normal = SubResource("StyleBoxTexture_6g82a")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_27fem")
+theme_override_styles/hover = SubResource("StyleBoxTexture_p3r4c")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_dq1h5")
+icon = SubResource("AtlasTexture_27fem")
+icon_alignment = 1
+expand_icon = true
 script = SubResource("GDScript_cqdbn")
 
 [node name="Flash" type="AnimationPlayer" parent="UI/OpenUpgrade" unique_id=83730659]
@@ -317,7 +394,41 @@ libraries/ = SubResource("AnimationLibrary_o0dkr")
 [node name="UpgradeScreen" parent="UI" unique_id=1290665312 instance=ExtResource("5_ieflj")]
 visible = false
 
+[node name="PointsShadow" type="TextureRect" parent="UI" unique_id=956762076]
+modulate = Color(0, 0, 0, 0.4117647)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -43.0
+offset_top = -101.0
+offset_right = 47.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("AtlasTexture_6g82a")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Points" type="TextureRect" parent="UI" unique_id=1491076691]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -103.0
+offset_right = 45.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("AtlasTexture_6g82a")
+expand_mode = 1
+stretch_mode = 4
+
 [connection signal="covering_finishing" from="SubViewport/MainGame" to="SubViewport/MainGame/PreviousCovers" method="_on_finished_covering"]
+[connection signal="covering_finishing" from="SubViewport/MainGame" to="SubViewport/MainGame/GlitterManager/Sprinklers" method="_on_covering_finishing"]
 [connection signal="finished_covering" from="SubViewport/MainGame/CoveringTexture" to="SubViewport/MainGame" method="_on_covering_finished"]
 [connection signal="timeout" from="SubViewport/MainGame/CoveringTexture/CheckCover" to="SubViewport/MainGame/CoveringTexture" method="_on_check_cover_timeout"]
 [connection signal="pressed" from="UI/OpenUpgrade" to="SubViewport/MainGame" method="open_upgrade_screen"]

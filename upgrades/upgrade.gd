@@ -55,7 +55,6 @@ signal pressed(node: Upgrade)
 			level_num.visible = true
 			slash.visible = true
 			level_max.visible = true
-			print(cost_num.size_flags_horizontal)
 			cost_num.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 			cost_texture.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 		else:
@@ -101,6 +100,9 @@ func _ready() -> void:
 		return
 	var screen: UpgradeScreen = get_parent().get_parent()
 	pressed.connect(screen._on_upgrade_pressed)
+	print(size)
+	size = Vector2.ZERO
+	print(size)
 
 
 func _on_button_pressed() -> void:

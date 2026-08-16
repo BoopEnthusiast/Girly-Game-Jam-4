@@ -68,4 +68,4 @@ func _on_upgrade_more_glitter() -> void:
 
 func _on_upgrade_sparkle_further() -> void:
 	for emitter: GlitterEmitter in glitter_emitters:
-		emitter.circle_size += 0.3
+		emitter.circle_size += 0.5

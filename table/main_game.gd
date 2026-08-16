@@ -8,6 +8,7 @@ signal covering_finishing()
 @onready var covering_texture: CoveringTexture = $CoveringTexture
 @onready var glitter_manager: GlitterManager = $GlitterManager
 @onready var screen: Camera2D = $Screen
+@onready var table_background: Sprite2D = $"../../CanvasLayer/TableBackground"
 
 @onready var upgrade_screen: UpgradeScreen = $"../../UI/UpgradeScreen"
 @onready var open_upgrade: Button = $"../../UI/OpenUpgrade"
@@ -28,6 +29,7 @@ func _on_covering_finished() -> void:
 	await RenderingServer.frame_post_draw
 	covering_finishing.emit()
 	screen.zoom /= 1.05
+	table_background.scale = screen.zoom
 	covering_texture.setup_new_layer()
 	upgrade_screen.points += 1
 	glitter_manager.hide_all_emitters()
